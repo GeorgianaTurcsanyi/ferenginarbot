@@ -62,7 +62,7 @@ struct ZulipMessage {
     pub avatar_url: String,
     pub client: String,
     pub content: String,
-    pub display_recipient: String,
+    pub display_recipient: Value,
     pub id: i64,
     pub is_me_message: bool,
     pub reactions: Value,
