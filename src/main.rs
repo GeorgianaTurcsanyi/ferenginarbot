@@ -46,7 +46,7 @@ async fn get_random_rule(Json(input): Json<ZulipPayload>) -> Result<Json<Value>,
         Ok(rules) => {
             let mut rng = rand::rng();
             let rule: Vec<&str> = rules.lines().choose(&mut rng).unwrap().split(": ").collect();
-            Ok(Json(json!({"rule": {rule[0]: rule[1]}})))
+            Ok(Json(json!({"content": format!("{}: {}", rule[0], rule[1])})))
         }
         Err(e) => {
                 eprintln!("error occurred opening rules file: {}", e);
