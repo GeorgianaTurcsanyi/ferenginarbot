@@ -58,35 +58,12 @@ async fn get_random_rule(Json(input): Json<ZulipPayload>) -> Result<Json<Value>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-struct ZulipMessage {
-    pub avatar_url: String,
-    pub client: String,
-    pub content: String,
-    pub display_recipient: Value,
-    pub id: i64,
-    pub is_me_message: bool,
-    pub reactions: Value,
-    pub recipient_id: i64,
-    pub rendered_content: String,
-    pub sender_email: String,
-    pub sender_full_name: String,
-    pub sender_id: i64,
-    pub sender_realm_str: String,
-    pub stream_id: i64,
-    pub subject: String,
-    pub submessages: Value,
-    pub timestamp: i64,
-    pub topic_links: Value,
-    #[serde(rename = "type")]
-    pub r#type: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
 struct ZulipPayload {
     pub bot_email: String,
     pub bot_full_name: String,
     pub data: String,
-    pub message: ZulipMessage,
+    // LEARN YOUR PLACE YOU ANNOYING THING
+    pub message: Value,
     pub token: String,
     pub trigger: String,
 }
