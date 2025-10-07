@@ -57,7 +57,7 @@ async fn get_random_rule(Json(input): Json<ZulipPayload>) -> Result<Json<Value>,
 
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ZulipMessage {
     pub avatar_url: String,
     pub client: String,
@@ -81,7 +81,7 @@ struct ZulipMessage {
     pub r#type: String,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ZulipPayload {
     pub bot_email: String,
     pub bot_full_name: String,
