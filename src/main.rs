@@ -5,7 +5,7 @@ use axum::http::StatusCode;
 use axum::routing::post;
 use serde_json::{Value, json, };
 use rand::prelude::*;
-use serde::{Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[tokio::main]
 async fn main() {
@@ -57,7 +57,7 @@ async fn get_random_rule(Json(input): Json<ZulipPayload>) -> Result<Json<Value>,
 
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Serialize, Deserialize)]
 struct ZulipMessage {
     pub avatar_url: String,
     pub client: String,
@@ -65,6 +65,7 @@ struct ZulipMessage {
     pub display_recipient: String,
     pub id: i64,
     pub is_me_message: bool,
+    pub reactions: Value,
     pub recipient_id: i64,
     pub rendered_content: String,
     pub sender_email: String,
@@ -73,11 +74,14 @@ struct ZulipMessage {
     pub sender_realm_str: String,
     pub stream_id: i64,
     pub subject: String,
+    pub submessages: Value,
     pub timestamp: i64,
+    pub topic_links: Value,
+    #[serde(rename = "type")]
     pub r#type: String,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Serialize, Deserialize)]
 struct ZulipPayload {
     pub bot_email: String,
     pub bot_full_name: String,
